@@ -9,7 +9,7 @@ function UrlsContainer() {
         {urlState.urls.map((url, index) => {
           return (
             <p key={index} className="text-center pb-1">
-              {url}
+              <a href={url}>{url}</a>
             </p>
           );
         })}
