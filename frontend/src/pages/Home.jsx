@@ -1,17 +1,31 @@
-import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import UrlsContainer from "../Urls/UrlsContainer";
-
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import logo from "../images/logo.png";
 function Home() {
+  const urlState = useSelector((state) => state.url);
   return (
     <>
-      <div className="centering">
+      <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-3/4 flex flex-col items-center justify-center">
+        <div className="logoshadow"></div>
+        <img alt="" src={logo} width={700} style={{ marginBottom: 30 }} />
         <NavLink to="/fileUpload">
-          <button className="text-slate-100 bg-primary p-4 text-4xl rounded-lg">
+          <button
+            className="bg-primary p-4 text-4xl rounded-lg font-bold"
+            style={{ color: "rgb(249 191 190)" }}
+          >
             Deploy
           </button>
+          {urlState.urls.length !== 0 && (
+            <NavLink to="/sitesdeployed" style={{ marginLeft: 20 }}>
+              <button
+                className=" bg-primary p-4 text-4xl rounded-lg font-bold"
+                style={{ color: "rgb(249 191 190)" }}
+              >
+                Links
+              </button>
+            </NavLink>
+          )}
         </NavLink>
-        <UrlsContainer />
       </div>
     </>
   );
