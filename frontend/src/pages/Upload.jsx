@@ -24,13 +24,13 @@ function Upload() {
       if (response.ok) {
         const data = await response.json();
         dispatch(addUrl(data.containerUrl));
-        navigateToHome("/", { url: { newurl: "u1" } });
+        navigateToHome("/sitesdeployed", { url: { newurl: "u1" } });
       }
     } catch (error) {}
   }
   return (
     <div className="centering flex flex-col gap-4">
-      <div className="text-center text-4xl">Deployment</div>
+      <div className="text-center text-4xl">Zip File</div>
       <div className="bg-blue-950 p-4 rounded-md flex flex-col gap-4">
         <div className="p-3 border-2 border-white p-4 rounded-xl">
           <input
