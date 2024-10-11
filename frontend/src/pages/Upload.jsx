@@ -3,30 +3,30 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUrl } from "../Urls/UrlsReducer";
 function Upload() {
-  const [zipfile, setzipfile] = useState([]);
+  const [zipfile, setzipfile] = useState(null);
   const navigateToHome = useNavigate();
   const dispatch = useDispatch();
   async function sendzipfile() {
-    if (zipfile.length === 0) {
+    if (zipfile === null) {
       alert("please select zipfile first");
       return;
     }
     let dataToBeSent = new FormData();
     dataToBeSent.append("zipfile", zipfile);
     // console.log(dataToBeSent.getAll("zipfile"));
-    dispatch(addUrl("u1"));
-    navigateToHome("/", {});
-    // try {
-    //   //api of the backend
-    //   const response = await fetch("localhost", {
-    //     method: "POST",
-    //     body: dataToBeSent,
-    //   });
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     navigateToHome("/", { url: { newurl: "u1" } });
-    //   }
-    // } catch (error) {}
+
+    try {
+      //api of the backend
+      const response = await fetch("http://localhost:3000/upload", {
+        method: "POST",
+        body: dataToBeSent,
+      });
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(addUrl(data.containerUrl));
+        navigateToHome("/", { url: { newurl: "u1" } });
+      }
+    } catch (error) {}
   }
   return (
     <div className="centering flex flex-col gap-4">
