@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUrl } from "../Urls/UrlsReducer";
+import { NavLink } from "react-router-dom";
+import logo from "../images/logo.png";
 function Upload() {
   const [zipfile, setzipfile] = useState(null);
   const navigateToHome = useNavigate();
@@ -23,34 +25,39 @@ function Upload() {
       });
       if (response.ok) {
         const data = await response.json();
-        dispatch(addUrl(data.containerUrl));
+        dispatch(addUrl(data.containerUrl + "/index.html"));
         navigateToHome("/sitesdeployed", { url: { newurl: "u1" } });
       }
     } catch (error) {}
   }
   return (
-    <div className="centering flex flex-col gap-4">
-      <div className="text-center text-4xl">Zip File</div>
-      <div className="bg-blue-950 p-4 rounded-md flex flex-col gap-4">
-        <div className="p-3 border-2 border-white p-4 rounded-xl">
-          <input
-            type="file"
-            accept=".zip" // only accept .zip zipfile
-            onChange={(event) => {
-              setzipfile(event.target.files[0]); // single file, so use [0]
+    <>
+      <NavLink to={"/"}>
+        <img alt="" src={logo} width={150} />
+      </NavLink>
+      <div className="centering flex flex-col gap-4">
+        <div className="text-center text-4xl">Zip File</div>
+        <div className="bg-blue-950 p-4 rounded-md flex flex-col gap-4">
+          <div className="p-3 border-2 border-white p-4 rounded-xl">
+            <input
+              type="file"
+              accept=".zip" // only accept .zip zipfile
+              onChange={(event) => {
+                setzipfile(event.target.files[0]); // single file, so use [0]
+              }}
+            />
+          </div>
+          <button
+            className="bg-blue-700 rounded-xl p-4"
+            onClick={() => {
+              sendzipfile();
             }}
-          />
+          >
+            Deploy
+          </button>
         </div>
-        <button
-          className="bg-blue-700 rounded-xl p-4"
-          onClick={() => {
-            sendzipfile();
-          }}
-        >
-          Deploy
-        </button>
       </div>
-    </div>
+    </>
   );
 }
 
