@@ -28,16 +28,12 @@ export async function uploadBlob(
   blobName: string,
   file: fileMetadata
 ) {
-  console.log(1);
   const containerClient = blobServiceClient.getContainerClient(containerName);
-  console.log(2);
   const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-  console.log(3);
   await blockBlobClient.uploadFile(file.path, {
     blobHTTPHeaders: {
       blobContentType: file.mimetype,
     },
   });
-  console.log(4);
   return blockBlobClient.url;
 }

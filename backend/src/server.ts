@@ -15,17 +15,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-const directoryPath = `temp`;
 
 app.post("/upload", upload.single("zipfile"), async (req, res) => {
   const zipFile = req.file as Express.Multer.File;
   console.log("file: ", zipFile);
-
-  if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath);
+  
+  const containerName = uuidv4().slice(0, 8);
+  const directoryPath = `temp/${containerName}`;
+  
+  if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true });
 
   await unzipFile(zipFile.path, directoryPath);
 
-  const containerName = uuidv4().slice(0, 8);
 
   const url = await createContainer(containerName);
   console.log("container url:", url);
@@ -39,10 +40,6 @@ app.post("/upload", upload.single("zipfile"), async (req, res) => {
 
     // Get the MIME type of the file
     const mimeType = mime.lookup(filePath) || "application/octet-stream"; // Default if MIME type is not found
-
-    console.log("File path:", filePath);
-    console.log("MIME type:", mimeType);
-
     const fileUrl = await uploadBlob(containerName, file, {
       mimetype: mimeType,
       path: filePath,
