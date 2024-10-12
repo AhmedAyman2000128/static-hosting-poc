@@ -15,7 +15,7 @@ function UrlsContainer() {
           {urlState.urls.map((url, index) => {
             return (
               <p key={index} className="text-center pb-1">
-                <a href={url}>
+                <a href={url} target="_blank">
                   {index + 1}. {url}
                 </a>
               </p>
