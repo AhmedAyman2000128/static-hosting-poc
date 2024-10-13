@@ -25,7 +25,7 @@ function Upload() {
       });
       if (response.ok) {
         const data = await response.json();
-        dispatch(addUrl(data.containerUrl + "/index.html"));
+        // dispatch(addUrl(data.containerUrl + "/index.html"));
         navigateToHome("/sitesdeployed", { url: { newurl: "u1" } });
       }
     } catch (error) {}
