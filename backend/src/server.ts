@@ -15,18 +15,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-
 app.post("/upload", upload.single("zipfile"), async (req, res) => {
   const zipFile = req.file as Express.Multer.File;
   console.log("file: ", zipFile);
-  
+
   const containerName = uuidv4().slice(0, 8);
   const directoryPath = `temp/${containerName}`;
-  
-  if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true });
+
+  if (!fs.existsSync(directoryPath))
+    fs.mkdirSync(directoryPath, { recursive: true });
 
   await unzipFile(zipFile.path, directoryPath);
-
 
   const url = await createContainer(containerName);
   console.log("container url:", url);
