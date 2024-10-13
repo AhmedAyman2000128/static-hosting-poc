@@ -37,3 +37,19 @@ export async function uploadBlob(
   });
   return blockBlobClient.url;
 }
+
+interface ContainerItem {
+  name: string;
+  url: string;
+}
+
+export async function listContainers() {
+  const containers: ContainerItem[] = [];
+  for await (const container of blobServiceClient.listContainers()) {
+    containers.push({
+      name: container.name,
+      url: `${blobServiceClient.url}${container.name}`,
+    });
+  }
+  return containers;
+}

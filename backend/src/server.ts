@@ -4,7 +4,7 @@ import fs from "fs";
 import express from "express";
 import upload from "./upload";
 import { v4 as uuidv4 } from "uuid";
-import { createContainer, uploadBlob } from "./blobStorage";
+import { createContainer, listContainers, uploadBlob } from "./blobStorage";
 import { unzipFile } from "./unzip";
 import path from "path";
 import mime from "mime-types";
@@ -52,6 +52,10 @@ app.post("/upload", upload.single("zipfile"), async (req, res) => {
   fs.rmSync(directoryPath, { recursive: true });
 
   res.json({ fileUrls, containerUrl: url });
+});
+
+app.get("/list", async (req, res) => {
+  res.json(await listContainers());
 });
 
 const PORT = process.env.PORT || 3000;
