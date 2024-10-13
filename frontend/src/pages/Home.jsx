@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
+import { useLoaderData } from "react-router-dom";
 function Home() {
-  const urlState = useSelector((state) => state.url);
+  // const urlState = useSelector((state) => state.url);
+  const urlData = useLoaderData();
   return (
     <>
       <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-3/4 flex flex-col items-center justify-center">
@@ -15,7 +17,7 @@ function Home() {
           >
             Deploy
           </button>
-          {urlState.urls.length !== 0 && (
+          {urlData.length !== 0 && (
             <NavLink to="/sitesdeployed" style={{ marginLeft: 20 }}>
               <button
                 className=" bg-primary p-4 text-4xl rounded-lg font-bold"
