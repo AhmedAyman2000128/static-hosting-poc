@@ -17,7 +17,7 @@ function UrlsContainer() {
           {/* {urlState.urls.map((url, index) => {
             const splittedUrl = url.split("/");
             const newUrl =
-              splittedUrl[splittedUrl.length - 2] + ".astrocloud.com";
+              splittedUrl[splittedUrl.length - 2] + ".lvh.me";
             return (
               <p key={index} className="text-center pb-1">
                 <a href={"http://" + newUrl} target="_blank">
@@ -31,10 +31,10 @@ function UrlsContainer() {
             return (
               <p key={index} className="text-center pb-1">
                 <a
-                  href={"http://" + url.name + ".astrocloud.com"}
+                  href={"http://" + url.name + ".lvh.me"}
                   target="_blank"
                 >
-                  {index + 1}. {url.name + ".astrocloud.com"}
+                  {index + 1}. {url.name + ".lvh.me"}
                 </a>
               </p>
             );
