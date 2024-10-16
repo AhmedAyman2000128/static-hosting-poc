@@ -1,5 +1,6 @@
 import { configDotenv } from "dotenv";
-configDotenv();
+// Load the environment variables depending on the environment
+process.env.DOCKER? configDotenv({path: '/run/secrets/secrets_file'}) : configDotenv();
 import fs from "fs";
 import express from "express";
 import upload from "./upload";

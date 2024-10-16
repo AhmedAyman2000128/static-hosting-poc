@@ -1,0 +1,16 @@
+
+services:
+  backend:
+    image: static-hosting-poc-backend
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - DOCKER=true
+      - AZURE_STORAGE_ACCOUNT_NAME=atwaa
+    secrets:
+      - secrets_file
+
+secrets:
+  secrets_file:
+    file: ./.env

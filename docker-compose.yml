@@ -1,0 +1,4 @@
+include:
+  - ./frontend/compose.yml
+  - ./backend/compose.yml
+  - ./devops/compose.yml

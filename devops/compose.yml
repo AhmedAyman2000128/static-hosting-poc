@@ -4,4 +4,18 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./server.conf:/etc/nginx/conf.d/server.conf
+      - ./server.conf:/etc/nginx/conf.d/server.conf:ro
+      - ./nginx-logs:/var/log/nginx
+
+  goaccess:
+    image: allinurl/goaccess:latest
+    volumes:
+      - ./nginx-logs:/srv/logs:ro
+    command: >
+      --log-format=COMBINED
+      --log-file=/srv/logs/access.log
+      --real-time-html
+    ports:
+      - "7890:7890"
+    depends_on:
+      - nginx
