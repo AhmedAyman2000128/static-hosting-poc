@@ -4,6 +4,13 @@ This is a proof of concept for a static hosting service on Azure. The service ta
 
 The subdomain routes to an NGINX web server that acts as a proxy, dynamically calculates the destination URL and forwards the request to the Azure Blob Storage.
 
+## Features
+
+- Extracting ZIP files
+- Uploading files from Node.js to Azure Blob Storage
+- Dynamic NGINX routing with calculating destination URL from input subdomain
+- GoAccess integration with NGINX for web analytics
+
 ## Architecture
 
 ![Architecture](./Diagrams/POC_Diagram.png)
