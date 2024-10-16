@@ -13,14 +13,15 @@ function UrlsContainer() {
         <NavLink to={"/"}>
           <img alt="" src={logo} width={150} />
         </NavLink>
-        <h1 className="ml-auto text-center text-5xl mb-10 mt-20">Links</h1>
-        <div className="flex flex-col gap-4 bg-blue-950 mt-2 p-5 ml-auto mr-auto w-fit">
-          {/* {urlData.map((url, index) => {
-            console.log(url.name);
+        <div className="flex flex-col gap-4 bg-blue-950 mt-2 centering p-5">
+          {/* {urlState.urls.map((url, index) => {
+            const splittedUrl = url.split("/");
+            const newUrl =
+              splittedUrl[splittedUrl.length - 2] + ".lvh.me";
             return (
               <p key={index} className="text-center pb-1">
-                <a href={"http://" + url.name + ".lvh.me"} target="_blank">
-                  {index + 1}. {url.name + ".lvh.me"}
+                <a href={"http://" + newUrl} target="_blank">
+                  {index + 1}. {newUrl}
                 </a>
               </p>
             );
@@ -29,9 +30,12 @@ function UrlsContainer() {
             console.log(url.name);
             return (
               <p key={index} className="text-center pb-1">
-                <NavLink to="/userWebsiteInfo" state={url.name + ".lvh.me"}>
+                <a
+                  href={"http://" + url.name + ".lvh.me"}
+                  target="_blank"
+                >
                   {index + 1}. {url.name + ".lvh.me"}
-                </NavLink>
+                </a>
               </p>
             );
           })}

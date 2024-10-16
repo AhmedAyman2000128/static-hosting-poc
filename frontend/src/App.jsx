@@ -9,7 +9,6 @@ import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import UrlsContainer from "./Urls/UrlsContainer";
-import Logs from "./pages/Logs";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
@@ -20,7 +19,6 @@ const router = createBrowserRouter(
         element={<UrlsContainer />}
         loader={queryUrls}
       />
-      <Route path="userWebsiteInfo" element={<Logs />} />
     </Route>
   )
 );
