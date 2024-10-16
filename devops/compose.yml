@@ -6,16 +6,22 @@ services:
     volumes:
       - ./server.conf:/etc/nginx/conf.d/server.conf:ro
       - ./nginx-logs:/var/log/nginx
+      - goaccess-data:/usr/share/nginx/html/report
 
   goaccess:
     image: allinurl/goaccess:latest
     volumes:
       - ./nginx-logs:/srv/logs:ro
+      - goaccess-data:/srv/report
     command: >
       --log-format=COMBINED
       --log-file=/srv/logs/access.log
+      --output=/srv/report/index.html
       --real-time-html
     ports:
       - "7890:7890"
     depends_on:
       - nginx
+
+volumes:
+  goaccess-data:
