@@ -15,7 +15,7 @@ function UrlsContainer() {
             <>
               {urlData.map((url, index) => {
                 return ( // this should be extracted into a separate component with props
-                  <p key={index} className="text-center pb-1">
+                  <p key={url} className="text-center pb-1">
                     <a
                       href={"http://" + url.name + ".lvh.me"}
                       target="_blank"
