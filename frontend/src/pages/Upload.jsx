@@ -15,7 +15,6 @@ function Upload() {
     }
     let dataToBeSent = new FormData();
     dataToBeSent.append("zipfile", zipfile);
-    // console.log(dataToBeSent.getAll("zipfile"));
 
     try {
       //api of the backend
@@ -25,7 +24,6 @@ function Upload() {
       });
       if (response.ok) {
         const data = await response.json();
-        // dispatch(addUrl(data.containerUrl + "/index.html"));
         navigateToHome("/sitesdeployed", { url: { newurl: "u1" } });
       }
     } catch (error) {}
