@@ -4,10 +4,10 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-import { queryUrls } from "./Urls/UrlsContainer";
+import { queryUrls } from "./pages/UrlsContainer";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
-import UrlsContainer from "./Urls/UrlsContainer";
+import UrlsContainer from "./pages/UrlsContainer";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
