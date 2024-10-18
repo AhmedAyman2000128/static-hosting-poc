@@ -4,32 +4,35 @@ import { NavLink } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 function UrlsContainer() {
   const urlData = useLoaderData();
-  if (urlData.length === 0) {
-    return null;
-  } else {
-    return (
-      <>
-        <NavLink to={"/"}>
-          <img alt="" src={logo} width={150} />
-        </NavLink>
-        <div className="flex flex-col gap-4 bg-blue-950 mt-2 centering p-5">
-          {urlData.map((url, index) => {
-            console.log(url.name);
-            return (
-              <p key={index} className="text-center pb-1">
-                <a
-                  href={"http://" + url.name + ".lvh.me"}
-                  target="_blank"
-                >
-                  {index + 1}. {url.name + ".lvh.me"}
-                </a>
-              </p>
-            );
-          })}
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <NavLink to={"/"}>
+        <img alt="" src={logo} width={150} />
+      </NavLink>
+      <div className="flex flex-col gap-4 bg-blue-950 mt-2 centering p-5">
+        {
+          urlData.length !== 0 ? (
+            <>
+              {urlData.map((url, index) => {
+                return ( // this should be extracted into a separate component with props
+                  <p key={index} className="text-center pb-1">
+                    <a
+                      href={"http://" + url.name + ".lvh.me"}
+                      target="_blank"
+                    >
+                      {index + 1}. {url.name + ".lvh.me"}
+                    </a>
+                  </p>
+                );
+              })}
+            </>
+          ) : (
+            <div className="text-center">No urls deployed</div>
+          )
+        }
+      </div>
+    </>
+  );
 }
 
 export default UrlsContainer;
