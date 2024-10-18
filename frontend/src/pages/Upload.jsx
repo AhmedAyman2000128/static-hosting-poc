@@ -26,7 +26,7 @@ function Upload() {
         const data = await response.json();
         navigateToHome("/sitesdeployed", { url: { newurl: "u1" } });
       }
-    } catch (error) {}
+    } catch (error) {} // Empty catch blocks are extremely bad. If an error happens, it will fail silently.
   }
   return (
     <>
