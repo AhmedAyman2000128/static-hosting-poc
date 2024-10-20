@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLoaderData } from "react-router-dom";
 function Home() {
-  // const urlState = useSelector((state) => state.url);
   const urlData = useLoaderData();
   return (
     <>
